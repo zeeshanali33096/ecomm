@@ -13,12 +13,15 @@ import { useHistory } from "react-router-dom";
 import checkEmail from "../../Utils/checkEmail";
 import { Auth } from "../../Utils/firebase";
 import GoogleSignIn from "../GoogleSignIn";
+import { TextContext } from "../TextProvider";
 
 const ForgotPasswordForm = () => {
   const { register, handleSubmit, errors, setError } = useForm();
   const [isSuccessfullySubmitted, setIsSuccessfullySubmitted] = React.useState(
     false
   );
+
+  const text = React.useContext(TextContext);
 
   const [formSubmitting, setFormSubmitting] = React.useState<boolean>(false);
   const history = useHistory();
@@ -56,11 +59,11 @@ const ForgotPasswordForm = () => {
   const validateEmail = (email: string) => {
     setIsSuccessfullySubmitted(false);
     if (!email.trim()) {
-      return "Email is required!";
+      return text.LoginForm.noEmail;
     } else if (checkEmail(email.trim())) {
       return true;
     }
-    return "Please enter a valid Email!";
+    return text.LoginForm.validateEmail;
   };
 
   return (
@@ -72,7 +75,7 @@ const ForgotPasswordForm = () => {
           minWidth="20em"
           name="email"
           type="email"
-          placeholder="Enter Email"
+          placeholder={text.LoginForm.emailPlaceholder}
           ref={register({ validate: validateEmail })}
         />
         <FormErrorMessage>
