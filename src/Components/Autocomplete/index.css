@@ -1,0 +1,22 @@
+.something {
+  display: none;
+}
+
+.datalist-active-item {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.datalist-active-item-default {
+  background-color: rgba(255, 255, 255, 0);
+}
+/* 
+.datalist-active-item :hover {
+  background-color: white !important;
+  color: black;
+  outline: none;
+  border: none;
+} */
+
+.optional {
+  background-color: #171923 !important;
+}
